@@ -1,0 +1,55 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "9ba1be4a-1aa3-45f1-8ffa-3355cf71ad4f",
+   "metadata": {
+    "jp-MarkdownHeadingCollapsed": true
+   },
+   "source": [
+    "# Text Analytics Assignment\n",
+    "\n",
+    "## What is a text? How do you know one when you see, or hear, one?\n",
+    "\n",
+    "i think text can be defined as any piece of written, spoken, or  communicative content that gives information, ideas, or emotions. It could range from a formal document like a research paper or into informal conversation captured in a text message. You know a text when you see or hear one because it contains language whether it is  a variety of sentences, words, or symbols that proves the purpose of communication. Texts can exist in many forms, literature , essays  digital posts, scripts, or even transcriptions of spoken words. A text is any structured communication, regardless of medium, that expresses meaning.\n",
+    "\n",
+    "## Why examine more than one text? What's the point of examining dozens, hundreds, thousands, or millions of texts? That is, what does big data mean for the study of texts?\n",
+    "\n",
+    "Examining multiple texts, rather than just one, allows for a broader and more comprehensive analysis. Focusing on a single text provides insight into that particular piece, but examining dozens, hundreds, or even millions of texts can reveal patterns, trends, and connections that are not apparent in individual pieces. This helps to draw conclusions about larger groups, time periods, or social phenomena. Big data in text analytics allows researchers to uncover insights from  information, such as tracking word usage  or identifying or analyzing large sets of texts can make these patterns visible in ways that would be difficult or impossible through other analysis.\n",
+    "\n",
+    "## If you could collect all of some kind of text, what would it be? Answer without concern for APIs or accessibility, just out of pure curiosity. Why?\n",
+    "\n",
+    "If I could collect all of one kind of text, I would collect conversations both formal and informal mediums. This could include everything from  social media exchanges to formal interviews or public speeches. The reason for this is that conversations represent a dynamic flow of ideas, thoughts, and emotions, and they provide insight into human interaction in all its forms. Studying a  collection of conversations could reveal shifts in language usage, social , humor, and even power dynamics. These conversations can tell  so much about culture, relationships, and social structures, making a  study from a variety of differnt perspectives.\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7bf0be30-c9e8-4bf8-92c7-c72af43caf0b",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.12.8"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
