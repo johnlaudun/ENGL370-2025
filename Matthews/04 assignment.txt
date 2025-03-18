@@ -1,0 +1,70 @@
+"""
+# Exploring Possible Text Collections for Text Analytics
+
+## Introduction
+For this assignment, I explored two possible sources of text that could be used for text analytics. The goal was to identify collections that contain at least 100,000 tokens, analyze the structure of their URLs, and determine how easily texts can be accessed. This notebook documents my thought process, the sources I considered, the URL structures I explored, and the final viability of each source.
+"""
+
+"""
+# Source 1: Project Gutenberg (Literary Texts)
+
+## Why Project Gutenberg?
+Project Gutenberg is a well-known source for public-domain books. It provides plain text versions of books, which makes them easy to process for text analytics.
+
+## URL Exploration
+Project Gutenberg assigns a unique ID to each book, which follows a structured URL pattern:
+- Book landing page: `https://www.gutenberg.org/ebooks/{book_id}`
+- Plain text file: `https://www.gutenberg.org/files/{book_id}/{book_id}-0.txt`
+
+### Example
+- **Pride and Prejudice** by Jane Austen
+  - Landing page: [https://www.gutenberg.org/ebooks/1342](https://www.gutenberg.org/ebooks/1342)
+  - Plain text: [https://www.gutenberg.org/files/1342/1342-0.txt](https://www.gutenberg.org/files/1342/1342-0.txt)
+
+## Viability Assessment
+- Books are readily available and downloadable in plain text format.
+- Two novels should be sufficient to meet the token requirement.
+- **Conclusion:** Project Gutenberg is a viable text source.
+"""
+
+"""
+# Source 2: BBC News (News Articles)
+
+## Why BBC News?
+BBC News is a reputable source that publishes daily news articles on various topics.
+
+## URL Exploration
+BBC News articles follow a structured URL pattern:
+- Homepage: [https://www.bbc.com/news](https://www.bbc.com/news)
+- Example article: [https://www.bbc.com/news/world-60525350](https://www.bbc.com/news/world-60525350)
+
+## Viability Assessment
+- News articles are relatively short, requiring many to meet the 100,000-token requirement.
+- URL structures vary, making automated collection more challenging.
+- Some articles require user interaction to load the full text.
+- **Conclusion:** While possible, collecting enough text from BBC News is more challenging compared to Project Gutenberg.
+"""
+
+"""
+# Final Decision
+- **Project Gutenberg is the preferred source** due to its accessibility and structured text format.
+- **BBC News is less viable** due to URL complexity and article length constraints.
+- If needed, another news source with an API (e.g., The Guardian or Reuters) could be considered for  work.
+
+## Next Steps
+- If proceeding with Project Gutenberg, select books that fit the research topic.
+- If using BBC News, explore structured ways to extract multiple articles.
+- Further exploration of APIs or web scraping methods may be necessary for large-scale collection.
+
+This notebook serves as a foundation for obtaining and processing text data for text analytics.
+"""
+
+"""
+# Sample Short Story: "The Tell-Tale Heart" by Edgar Allan Poe
+
+## Source Information
+- **Author**: Edgar Allan Poe
+- **Published**: 1843
+- **URL**: [https://www.gutenberg.org/ebooks/2148](https://www.gutenberg.org/ebooks/2148)
+- **Plain Text**: [https://www.gutenberg.org/files/2148/2148-0.txt](https://www.gutenberg.org/files/2148/2148-0.txt)
+
