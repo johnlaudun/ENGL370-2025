@@ -2,6 +2,6 @@
 .ipynb_checkpoints
 .ipynb_checkpoints/*.*
 */.ipynb_checkpoints/*
-.vscode/*.*
 Gibson/data/*.*
 Gibson/data/Adventure/*.*
+\data\*.*
