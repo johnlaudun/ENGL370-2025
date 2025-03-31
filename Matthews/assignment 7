@@ -1,76 +1,110 @@
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.decomposition import LatentDirichletAllocation, NMF
-from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
-from sklearn.datasets import fetch_20newsgroups
-
-# Load term frequency CSV (Assuming CSV has words as columns and documents as rows)
-# Referencing Blei et al. (2003) on the effectiveness of LDA in topic modeling
-term_freq_df = pd.read_csv('term_frequency.csv')
-
-# Extract feature names
-feature_names = term_freq_df.columns
-
-# Convert DataFrame to NumPy array
-term_frequency = term_freq_df.values
-
-# Adjust LDA parameters to refine topic quality
-# Based on the insights from Griffiths & Steyvers (2004), tuning topic count and iterations impacts coherence
-num_topics = 7  # Increased topic count
-lda = LatentDirichletAllocation(n_components=num_topics, learning_method='batch', max_iter=15, random_state=42)
-lda.fit(term_frequency)
-
-# Display LDA topics
-def display_topics(model, feature_names, num_top_words=15):  # Increased word count for better topic clarity
-    for topic_idx, topic in enumerate(model.components_):
-        top_features = [feature_names[i] for i in topic.argsort()[:-num_top_words - 1:-1]]
-        print(f"Topic {topic_idx}: {' '.join(top_features)}")
-
-display_topics(lda, feature_names)
-
-# Load corpus for TF-IDF (using 20 Newsgroups dataset for demonstration)
-# The choice of dataset follows the approach used in prior studies of topic modeling evaluation
-newsgroups = fetch_20newsgroups(subset='all', remove=('headers', 'footers', 'quotes'))
-corpus = newsgroups.data
-
-# Compute TF-IDF Matrix with adjusted parameters to minimize proper nouns
-# Based on Sievert & Shirley (2014), stop words and token patterns influence interpretability
-# Adjusting min_df ensures less frequent terms do not dominate topics
-tfidf_vectorizer = TfidfVectorizer(max_df=0.85, min_df=3, stop_words='english', lowercase=True, token_pattern=r'\b[a-z]{3,}\b')
-tfidf_matrix = tfidf_vectorizer.fit_transform(corpus)
-tfidf_feature_names = tfidf_vectorizer.get_feature_names_out()
-
-# Adjust NMF parameters for better topic differentiation
-# Following Lee & Seung (1999), initializing with NNDSVD helps in topic separation
-nmf = NMF(n_components=num_topics, init='nndsvd', max_iter=200, random_state=42)
-nmf.fit(tfidf_matrix)
-
-display_topics(nmf, tfidf_feature_names)
-
-# Visualizing LDA Topic Distribution
-lda_topic_distribution = lda.transform(term_frequency)
-sns.heatmap(lda_topic_distribution, cmap='viridis')
-plt.title("LDA Topic Distribution")
-plt.show()
-
-# Visualizing NMF Topic Distribution
-nmf_topic_distribution = nmf.transform(tfidf_matrix)
-sns.heatmap(nmf_topic_distribution[:50], cmap='coolwarm')
-plt.title("NMF Topic Distribution (First 50 Docs)")
-plt.show()
-
-# Algorithm Comparison:
-# LDA (Latent Dirichlet Allocation) and NMF (Non-Negative Matrix Factorization) are both topic modeling techniques but work differently:
-# - LDA is a probabilistic model that assumes topics are generated based on a Dirichlet distribution, making it useful for discovering hidden structures in text.
-# - NMF is a matrix factorization method that decomposes the term-document matrix into non-negative factors, providing an interpretable parts-based representation of topics.
-# - LDA assigns words to topics probabilistically, while NMF uses linear algebra to extract topic-word associations.
-# - LDA often produces more coherent topics when documents have significant topic overlap, whereas NMF can perform better when distinct topics exist with clear separations.
-
-# References:
-# - Blei, D. M., Ng, A. Y., & Jordan, M. I. (2003). Latent Dirichlet Allocation.
-# - Griffiths, T. L., & Steyvers, M. (2004). Finding scientific topics.
-# - Sievert, C., & Shirley, K. (2014). LDAvis: A method for visualizing and interpreting topic models.
-# - Lee, D. D., & Seung, H. S. (1999). Learning the parts of objects by non-negative matrix factorization.
-# - IBM (2024). Topic Modeling Overview. https://www.ibm.com/think/topics/topic-modeling
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "1f2d10c5-e4fd-4516-bfd5-627d3d536458",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "import matplotlib.pyplot as plt\n",
+    "import seaborn as sns\n",
+    "from sklearn.decomposition import LatentDirichletAllocation, NMF\n",
+    "from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer\n",
+    "from sklearn.datasets import fetch_20newsgroups\n",
+    "\n",
+    "# Load term frequency CSV (Assuming CSV has words as columns and documents as rows)\n",
+    "# Referencing Blei et al. (2003) on the effectiveness of LDA in topic modeling\n",
+    "term_freq_df = pd.read_csv('term_frequency.csv')\n",
+    "\n",
+    "# Extract feature names\n",
+    "feature_names = term_freq_df.columns\n",
+    "\n",
+    "# Convert DataFrame to NumPy array\n",
+    "term_frequency = term_freq_df.values\n",
+    "\n",
+    "# Adjust LDA parameters to refine topic quality\n",
+    "# Based on the insights from Griffiths & Steyvers (2004), tuning topic count and iterations impacts coherence\n",
+    "num_topics = 7  # Increased topic count\n",
+    "lda = LatentDirichletAllocation(n_components=num_topics, learning_method='batch', max_iter=15, random_state=42)\n",
+    "lda.fit(term_frequency)\n",
+    "\n",
+    "# Display LDA topics\n",
+    "def display_topics(model, feature_names, num_top_words=15):  # Increased word count for better topic clarity\n",
+    "    for topic_idx, topic in enumerate(model.components_):\n",
+    "        top_features = [feature_names[i] for i in topic.argsort()[:-num_top_words - 1:-1]]\n",
+    "        print(f\"Topic {topic_idx}: {' '.join(top_features)}\")\n",
+    "\n",
+    "display_topics(lda, feature_names)\n",
+    "\n",
+    "# Load corpus for TF-IDF (using 20 Newsgroups dataset for demonstration)\n",
+    "# The choice of dataset follows the approach used in prior studies of topic modeling evaluation\n",
+    "newsgroups = fetch_20newsgroups(subset='all', remove=('headers', 'footers', 'quotes'))\n",
+    "corpus = newsgroups.data\n",
+    "\n",
+    "# Compute TF-IDF Matrix with adjusted parameters to minimize proper nouns\n",
+    "# Based on Sievert & Shirley (2014), stop words and token patterns influence interpretability\n",
+    "# Adjusting min_df ensures less frequent terms do not dominate topics\n",
+    "tfidf_vectorizer = TfidfVectorizer(max_df=0.85, min_df=3, stop_words='english', lowercase=True, token_pattern=r'\\b[a-z]{3,}\\b')\n",
+    "tfidf_matrix = tfidf_vectorizer.fit_transform(corpus)\n",
+    "tfidf_feature_names = tfidf_vectorizer.get_feature_names_out()\n",
+    "\n",
+    "# Adjust NMF parameters for better topic differentiation\n",
+    "# Following Lee & Seung (1999), initializing with NNDSVD helps in topic separation\n",
+    "nmf = NMF(n_components=num_topics, init='nndsvd', max_iter=200, random_state=42)\n",
+    "nmf.fit(tfidf_matrix)\n",
+    "\n",
+    "display_topics(nmf, tfidf_feature_names)\n",
+    "\n",
+    "# Visualizing LDA Topic Distribution\n",
+    "lda_topic_distribution = lda.transform(term_frequency)\n",
+    "sns.heatmap(lda_topic_distribution, cmap='viridis')\n",
+    "plt.title(\"LDA Topic Distribution\")\n",
+    "plt.show()\n",
+    "\n",
+    "# Visualizing NMF Topic Distribution\n",
+    "nmf_topic_distribution = nmf.transform(tfidf_matrix)\n",
+    "sns.heatmap(nmf_topic_distribution[:50], cmap='coolwarm')\n",
+    "plt.title(\"NMF Topic Distribution (First 50 Docs)\")\n",
+    "plt.show()\n",
+    "\n",
+    "# Algorithm Comparison:\n",
+    "# LDA (Latent Dirichlet Allocation) and NMF (Non-Negative Matrix Factorization) are both topic modeling techniques but work differently:\n",
+    "# - LDA is a probabilistic model that assumes topics are generated based on a Dirichlet distribution, making it useful for discovering hidden structures in text.\n",
+    "# - NMF is a matrix factorization method that decomposes the term-document matrix into non-negative factors, providing an interpretable parts-based representation of topics.\n",
+    "# - LDA assigns words to topics probabilistically, while NMF uses linear algebra to extract topic-word associations.\n",
+    "# - LDA often produces more coherent topics when documents have significant topic overlap, whereas NMF can perform better when distinct topics exist with clear separations.\n",
+    "\n",
+    "# References:\n",
+    "# - Blei, D. M., Ng, A. Y., & Jordan, M. I. (2003). Latent Dirichlet Allocation.\n",
+    "# - Griffiths, T. L., & Steyvers, M. (2004). Finding scientific topics.\n",
+    "# - Sievert, C., & Shirley, K. (2014). LDAvis: A method for visualizing and interpreting topic models.\n",
+    "# - Lee, D. D., & Seung, H. S. (1999). Learning the parts of objects by non-negative matrix factorization.\n",
+    "# - IBM (2024). Topic Modeling Overview. https://www.ibm.com/think/topics/topic-modeling\n"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.12.8"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
