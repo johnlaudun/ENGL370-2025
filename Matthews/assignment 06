@@ -10,7 +10,30 @@ file_paths = [
     'agnesofgod (1).txt',
     'afewgoodmen (1).txt',
     '8mm (1).txt'
-]
+"8MM", by Andrew Kevin Walker
+
+                            eight millimeter
+
+                            written by
+
+                            Andrew Kevin Walker
+
+                                                      5/06/97
+
+                                                      first
+
+     INT.  MIAMI AIRPORT, TERMINAL -- DAY
+
+     Amongst the weary tourist families and solitary businessmen
+
+     sits TOM WELLES, middle-aged, hair neat, suit crisp and
+
+     gray.  He's eating crackers from a cellophane package,
+
+     sipping soda from a paper cup, watching an ARRIVAL GATE.
+
+     AT THE GATE
+
 
 screenplays = {}
 for path in file_paths:
