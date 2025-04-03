@@ -1,1 +1,71 @@
+In this notebook, I loaded only one text file and found all the adjectives and adverbs in it. Then I counted them and revelaed the 10 most common ones in each category.
+
+To start, I made sure the nltk library was available. This is a toolkit that helps Python understand and work with language. It can break up text into individual words by tokenizng and label each word with its part of speech I imported nltk at the beginning of my notebook so I could use its tools later in my code.
+# Add code cells step by step
+
+# Import necessary libraries
+nb.cells.append(nbf.v4.new_code_cell("""
+import nltk
+from collections import Counter
+from nltk import pos_tag, word_tokenize
+
+# Download necessary NLP models
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+"""))
+
+# Load the text file
+nb.cells.append(nbf.v4.new_code_cell("""
+# Load text file
+with open('agnesofgod (2).txt', 'r', encoding='utf-8') as file:
+    text = file.read()
+
+# Display first few characters
+print(text[:500])
+"""))
+
+# Tokenization and POS tagging
+nb.cells.append(nbf.v4.new_code_cell("""
+# Tokenization and POS tagging
+tokens = word_tokenize(text)
+tagged_words = pos_tag(tokens)
+
+# Show first 10 tagged words
+tagged_words[:10]
+"""))
+
+# Extract adjectives and adverbs
+
+nb.cells.append(nbf.v4.new_code_cell("""
+This piece of code helps me go through the first 100 words of my text and find all the adjectives. The text has already been processed so that each word is labeled with its part of speech like if it’s a noun, verb, or adjective. I used a loop to look at each word one at a time. For each word, I checked if its label was “JJ,” which is the code for adjectives. If it was, I used the word. This allowed me to quickly see which adjectives were used at the beginning of the text.
+# Extract adjectives (JJ, JJR, JJS) and adverbs (RB, RBR, RBS)
+adjectives = [word for word, tag in tagged_words if tag in ['JJ', 'JJR', 'JJS']]
+adverbs = [word for word, tag in tagged_words if tag in ['RB', 'RBR', 'RBS']]
+
+# Display counts
+print(f'Total Adjectives: {len(adjectives)}')
+print(f'Total Adverbs: {len(adverbs)}')
+"""))
+
+# Count and find top 10 most frequent adjectives and adverbs
+nb.cells.append(nbf.v4.new_code_cell("""
+# Count occurrences
+adj_counts = Counter(adjectives)
+adv_counts = Counter(adverbs)
+
+# Get top 10 most frequent
+top_10_adj = adj_counts.most_common(10)
+top_10_adv = adv_counts.most_common(10)
+
+# Display results
+print('Top 10 Adjectives:', top_10_adj)
+print('Top 10 Adverbs:', top_10_adv)
+"""))
+
+# Save the notebook
+notebook_path = "/mnt/data/Updated_08-bella.ipynb"
+with open(notebook_path, "w", encoding="utf-8") as f:
+    nbf.write(nb, f)
+
+notebook_path
 
