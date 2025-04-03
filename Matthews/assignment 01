@@ -1,93 +1,25 @@
-{
- "cells": [
-  {
-   "cell_type": "code",
-   "execution_count": 1,
-   "id": "b3c503f2-750a-4025-a5b3-e6acb32a5c0a",
-   "metadata": {},
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "## Amari's Profile\n",
-      "\n",
-      "My name is Amari. I am from Houma, Louisiana. I went to Covent Christian Academy High School. My major is Business Administration, and I am currently a sophomore at UL.\n",
-      "\n",
-      "- **Favorite color**: Blue  \n",
-      "- **Pet**: None  \n",
-      "- **Super Bowl prediction**: Chiefs will win  \n",
-      "\n",
-      "It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of light, it was the season of darkness, it was the spring of hope, it was the winter of despair.\n",
-      "<class 'list'>\n",
-      "60\n",
-      "['it', 'was', 'the', 'best', 'of', 'times,', 'it', 'was', 'the', 'worst', 'of', 'times,', 'it', 'was', 'the', 'age', 'of', 'wisdom,', 'it', 'was', 'the', 'age', 'of', 'foolishness,', 'it', 'was', 'the', 'epoch', 'of', 'belief,', 'it', 'was', 'the', 'epoch', 'of', 'incredulity,', 'it', 'was', 'the', 'season', 'of', 'light,', 'it', 'was', 'the', 'season', 'of', 'darkness,', 'it', 'was', 'the', 'spring', 'of', 'hope,', 'it', 'was', 'the', 'winter', 'of', 'despair.']\n",
-      "it\n",
-      "it\n",
-      "True\n"
-     ]
-    }
-   ],
-   "source": [
-    "import string\n",
-    "\n",
-    "# Personal Information (Markdown Format)\n",
-    "personal_info = \"\"\"\n",
-    "## Amari's Profile\n",
-    "\n",
-    "My name is Amari. I am from Houma, Louisiana. I went to Covent Christian Academy High School. My major is Business Administration, and I am currently a sophomore at UL.\n",
-    "\n",
-    "- **Favorite color**: Blue  \n",
-    "- **Pet**: None  \n",
-    "- **Super Bowl prediction**: Chiefs will win  \n",
-    "\"\"\"\n",
-    "print(personal_info)\n",
-    "\n",
-    "# Open and read the text file\n",
-    "file = open(\"..//assets/Dickens.txt\", \"r\")\n",
-    "dickens = file.read()\n",
-    "print(dickens)\n",
-    "\n",
-    "# Count the number of words\n",
-    "words = dickens.lower().split(\" \")\n",
-    "word_count = len(words)\n",
-    "print(type(words))\n",
-    "print(word_count)\n",
-    "print(words[:60])  # Print only the first 60 words for readability\n",
-    "\n",
-    "# Compare the first and seventh words\n",
-    "print(words[0])\n",
-    "print(words[6])\n",
-    "print(words[0] == words[6])\n"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "id": "34bdafdb-2368-4071-b7f7-d43284481d61",
-   "metadata": {},
-   "source": []
-  }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python 3 (ipykernel)",
-   "language": "python",
-   "name": "python3"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 3
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython3",
-   "version": "3.10.16"
-  }
- },
- "nbformat": 4,
- "nbformat_minor": 5
-}
+# Amari
+
+Hello! My name is Amari, and I'm currently a sophomore at UL, majoring in Business Administration. I’m from Houma, Louisiana, and I went to Covent Christian Academy High School. I enjoy learning about various subjects, including history and business, and I’m excited to dive into text analysis and data science. Outside of school, I love watching sports, especially football, and I believe the Chiefs will take home the Super Bowl this year.
+
+- **Favorite color**: Blue
+- **Pet**: None
+- **Super Bowl prediction**: Chiefs will win
+import nltk
+from nltk.corpus import gutenberg
+import string
+
+# Load the text
+file_id = 'dickens.txt'
+text = gutenberg.raw(file_id)
+
+# Tokenize the text
+tokens = nltk.word_tokenize(text)
+
+# Remove punctuation and count words
+words_no_punctuation = [word for word in tokens if word.isalpha()]
+word_count = len(words_no_punctuation)
+
+print(f"Total words (no punctuation): {word_count}")
+It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of light, it was the season of darkness, it was the spring of hope, it was the winter of despair.
+Word Count =  60
