@@ -2,5 +2,27 @@
 .ipynb_checkpoints
 .ipynb_checkpoints/*.*
 */.ipynb_checkpoints/*
+<<<<<<< HEAD
 .vscode/*.*
 Matthews/04-corpora-ideas.md
+=======
+\data\*.*
+\data\Romance\*.*
+
+
+=======
+Gibson/data/*.*
+Gibson/data/Adventure/*.*
+\data\*.*
+>>>>>>> e39f4ab2217e4ca013a1750b743f8cb1dcaeca59
+=======
+Gibson/data/*.*
+Gibson/data/Adventure/*.*
+\data\*.*
+>>>>>>> e39f4ab2217e4ca013a1750b743f8cb1dcaeca59
+>>>>>>> a090bebcf40ac104a26bd52bcb8c5f4a093b7396
+Creel/The_Engineering_of_the_Human_Body.txt
+Creel/The_History_of_the_Peloponnesian_War.txt
+Creel/The_Science_of_Getting_Rich.txt
+Matthews/assignment 01
+Matthews/assignment 06

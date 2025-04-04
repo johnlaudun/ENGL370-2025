@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
  "cells": [
   {
@@ -39,3 +40,30 @@
  "nbformat": 4,
  "nbformat_minor": 5
 }
+=======
+# Amari
+
+Hello! My name is Amari, and I'm currently a sophomore at UL, majoring in Business Administration. I’m from Houma, Louisiana, and I went to Covent Christian Academy High School. I enjoy learning about various subjects, including history and business, and I’m excited to dive into text analysis and data science. Outside of school, I love watching sports, especially football, and I believe the Chiefs will take home the Super Bowl this year.
+
+- **Favorite color**: Blue
+- **Pet**: None
+- **Super Bowl prediction**: Chiefs will win
+import nltk
+from nltk.corpus import gutenberg
+import string
+
+# Load the text
+file_id = 'dickens.txt'
+text = gutenberg.raw(file_id)
+
+# Tokenize the text
+tokens = nltk.word_tokenize(text)
+
+# Remove punctuation and count words
+words_no_punctuation = [word for word in tokens if word.isalpha()]
+word_count = len(words_no_punctuation)
+
+print(f"Total words (no punctuation): {word_count}")
+It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of light, it was the season of darkness, it was the spring of hope, it was the winter of despair.
+Word Count =  60
+>>>>>>> a090bebcf40ac104a26bd52bcb8c5f4a093b7396
